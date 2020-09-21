@@ -1,5 +1,7 @@
 .outer {
-    width: 1200px;
+    width: 98.5%;
+    margin-left: 10px;
+    margin-bottom: 20px;
     height: 200px;
     white-space: nowrap;
     position: relative;
@@ -12,8 +14,59 @@
     width: 25%;
     background-color: #eee;
     float: none;
-    height: 90%;
+    height: 100%;
     margin: 0 0.25%;
     display: inline-block;
     zoom: 1;
 }
+
+.mainbody{
+    position: absolute; 
+    top: 0; 
+    width: 100%;
+    left: 0;
+    background-image:linear-gradient(to bottom, #162e5e, #019CAD), url("../Images/background.jpg");
+}
+
+.labelclass{
+    color: white;
+    font-weight: bold;
+    text-align:left;
+    height: 60px;
+    margin-left: 15px;
+    left:10px;
+    font-size: 45px;
+    background: -webkit-linear-gradient(#eee, #333);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.htag{
+    margin-left:15px;
+    color: white;
+    font-weight: bold;
+}
+
+#wrapper{
+    overflow:hidden;
+    position: relative;
+    height: 70px; 
+    width: 100%;
+}
+
+#c1{
+   float:left;
+   width: 50%;
+}
+
+#c2{
+    float:right;
+    width: 50%;
+}
+
+.sliderimg{
+    width: 98%;
+    margin-left: 10px;
+    height: 500px;
+    object-fit: cover
+  }

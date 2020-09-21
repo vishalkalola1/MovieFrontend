@@ -1,0 +1,33 @@
+.outer1 {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.outer1 div {
+    width: 300px;
+    height: 300px;
+    outline: 1px solid;
+    float: left;
+    margin-left: 15px;
+    margin-bottom: 15px;
+
+}
+
+.mainbody{
+    min-height:100% ;
+    background-image:linear-gradient(to bottom, #162e5e, #019CAD), url("../Images/background.jpg");
+}
+
+.labelclassSearch{
+    color: white;
+    font-weight: bold;
+    text-align:center;
+    height: 60px;
+    width: 100%;
+    margin-left: 15px;
+    left:10px;
+    font-size: 45px;
+    background: -webkit-linear-gradient(#eee, #333);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

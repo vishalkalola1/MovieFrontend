@@ -8,15 +8,19 @@ export const buildURL = (url) => {
   return `${baseURL}/${url}/${version}?${APIKEY}&${token}${localStorage.getItem("secretkey")}`
 };
 
+export const buildURLParam = (url) => {
+  return `${baseURL}/${url}/${version}?${APIKEY}`
+};
+
 export const registerUser = async (dict) => {
   const request = new Request(buildURL('createuser'), {
     method: "POST",
-    headers:{
+    headers: {
       "content-type": "application/json"
-    }, 
+    },
     body: JSON.stringify(dict)
   });
-  
+
   let data = await fetch(request)
   let json = data.json()
   if (data.status == 200) {
@@ -31,7 +35,7 @@ export const registerUser = async (dict) => {
 export const authenticateLogin = async (dict) => {
   const request = new Request(buildURL('authenticateUser'), {
     method: "POST",
-    headers:{
+    headers: {
       "content-type": "application/json"
     },
     body: JSON.stringify(dict)
@@ -42,6 +46,44 @@ export const authenticateLogin = async (dict) => {
     return json
   } else if (data.status == 401) {
     alert("Wrong Credentials")
+  } else {
+    alert("Please try again...")
+  }
+};
+
+export const searchMovie = async (name) => {
+  const request = new Request(`${buildURL('searchMovie')}&name=${name}`, {
+    method: "GET",
+    headers: {
+      "content-type": "application/json",
+      "Authorization": `bearer ${localStorage.getItem("secretkey")}`
+    }
+  });
+  let data = await fetch(request)
+  let json = data.json()
+  if (data.status == 200) {
+    return json
+  } else if (data.status == 401) {
+    alert("Wrong Credentials")
+  } else {
+    alert("Please try again...")
+  }
+};
+
+export const detailsMovie = async (id) => {
+  const request = new Request(`${buildURL('detailsMovie')}&id=${id}`, {
+    method: "GET",
+    headers: {
+      "content-type": "application/json",
+      "Authorization": `bearer ${localStorage.getItem("secretkey")}`
+    }
+  });
+  let data = await fetch(request)
+  let json = data.json()
+  if (data.status == 200) {
+    return json
+  } else if (data.status == 401) {
+    alert("Unauthorized request please login again...")
   } else {
     alert("Please try again...")
   }
