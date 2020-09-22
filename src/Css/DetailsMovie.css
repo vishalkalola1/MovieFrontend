@@ -134,7 +134,7 @@
     margin: 10px 10px 10px 10px;
     overflow-x: hidden;
     height: 640px;
-    overflow-y: scroll;
+    overflow-y: hidden;
     overflow: auto;
 }
 
