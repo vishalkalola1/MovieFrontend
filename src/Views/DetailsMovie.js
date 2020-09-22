@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom';
 import { detailsMovie } from '../api/apiService'
 import '../Css/DetailsMovie.css'
 import 'font-awesome/css/font-awesome.min.css'
-import BeautyStars from "beauty-stars";
+import StarRatings from 'react-star-ratings'
 
 class DetailsMovie extends Component {
 
@@ -13,8 +12,9 @@ class DetailsMovie extends Component {
         this.idMovie = props.match.params.idMovie
         this.state = {
             dataMovie: {},
-            rating : 1
+            rating : 0.0
         }
+        this.changeRating = this.changeRating.bind(this)
     }
 
     componentDidMount() {
@@ -30,9 +30,11 @@ class DetailsMovie extends Component {
         })
     }
 
-    onStarClick(nextValue, prevValue, name) {
-        this.setState({rating: nextValue});
-    }
+    changeRating( newRating ) {
+        this.setState({
+          rating: newRating
+        });
+      }
 
     isEmpty(obj) {
         return Object.keys(obj).length === 0;
@@ -62,18 +64,15 @@ class DetailsMovie extends Component {
                         </div>
                     </div>
                     <div style={{marginLeft:'30px', marginRight:'30px'}}>
-
-                        <div style={{display:'inline-block',marginRight:'10px'}}>
-                            <span class="heading" ><b>User Rating</b></span>
-                        </div>
-                        <div style={{display:'inline-block'}}>
-                            <BeautyStars
-                                value={this.state.rating}
-                                onChange={value => this.setState({ rating:value })}
-                                size = '25px'
-                            />
-                        </div>
-
+                        <span class="heading"><b>User Rating</b></span>
+                        <StarRatings
+                            rating={this.state.rating}
+                            starRatedColor="blue"
+                            changeRating={this.changeRating}
+                            numberOfStars={5}
+                            starDimension="40px"
+                            name='rating'
+                        />
                         <p>4.1 average based on 254 reviews.</p>
                         <hr style={{ border:'3px solid #f1f1f1' }} />
 
@@ -245,7 +244,7 @@ class DetailsMovie extends Component {
         return (
             <div class="mainbody">
                 <div>
-                    {!this.isEmpty(this.state.dataMovie) ? this.renderdetails() : this.renderdetails() }
+                    {!this.isEmpty(this.state.dataMovie) ? this.renderdetails() : this.renderdetails()}
                 </div>
             </div>
         )
