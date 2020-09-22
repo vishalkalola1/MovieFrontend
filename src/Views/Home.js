@@ -63,39 +63,120 @@ class Home extends Component {
             </div>
             <h3 class="htag">Recommended Movies</h3>
             <div class="outer">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
             </div>
             <h3 class="htag">New Movies</h3>
             <div class="outer">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+            <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
             </div>
             <h3 class="htag">Last Seen</h3>
             <div class="outer">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+            <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
+                <div class="zoom">
+                    <img src={require('../Images/background.jpg')} style={{ width:'200px', height:'200px'}}></img>
+                </div>
             </div>
             
             </div>

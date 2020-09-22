@@ -244,7 +244,7 @@ class DetailsMovie extends Component {
         return (
             <div class="mainbody">
                 <div>
-                    {!this.isEmpty(this.state.dataMovie) ? this.renderdetails() : this.renderError()}
+                    {!this.isEmpty(this.state.dataMovie) ? this.renderdetails() : this.renderdetails() }
                 </div>
             </div>
         )
