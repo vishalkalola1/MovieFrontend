@@ -16,7 +16,8 @@ class DetailsMovie extends Component {
             rating: 0.0,
             comment: "",
             comments: [],
-            socket: io('http://localhost:3001', { query: `movieId=${this.idMovie}` })
+            ratingData:{},
+            socket: io('http://192.168.0.38:3001', { query: `movieId=${this.idMovie}` })
         }
 
         this.submitComment = this.submitComment.bind(this)
@@ -25,9 +26,7 @@ class DetailsMovie extends Component {
 
         this.state.socket.on('connect', ()=> {
             console.log("Socket Connected")
-            
         });
-
 
         this.state.socket.on('disconnect',()=> {
             console.log("Socket Disconnected")
@@ -41,13 +40,11 @@ class DetailsMovie extends Component {
                 this.setState({comments:[...this.state.comments,data]})
             }
         })
-
-        
     }
 
 
     componentDidMount() {
-        // this.getDetails()
+        this.getDetails()
     }
 
     returnHome() {
@@ -74,7 +71,6 @@ class DetailsMovie extends Component {
     }
 
     returnData(data) {
-        debugger;
         this.setState({"comment":""})
     }
 
@@ -82,18 +78,31 @@ class DetailsMovie extends Component {
         let json = {
             "title": "vishal",
             "comment": this.state.comment,
-            "userid": "1",
+            "userid": localStorage.getItem("userid"),
             "movieid": this.idMovie
         }
         this.state.socket.emit("addcomment", json, (data)=> {
             this.returnData(data)
         });
-
     }
 
     changeRating(newRating) {
-        this.setState({
-            rating: newRating
+
+        let json = {
+            "rating":`${newRating}`,
+            "userid": localStorage.getItem("userid"),
+            "movieid": `${this.idMovie}`
+        }
+
+        debugger;
+        this.state.socket.emit("addratings", json, (data)=> {
+            console.log(data)
+            if (data.status == 200){
+                this.setState({
+                    ratingData: data,
+                    rating:data.rating
+                });
+            }
         });
     }
 
@@ -142,9 +151,10 @@ class DetailsMovie extends Component {
                             changeRating={this.changeRating}
                             numberOfStars={5}
                             starDimension="40px"
+                            starHoverColor="blue"
                             name='rating'
                         />
-                        <p>4.1 average based on 254 reviews.</p>
+                        <p>4.1 rate based on 254 ratings.</p>
                         <hr style={{ border: '3px solid #f1f1f1' }} />
 
                         <div class="row" >
@@ -153,55 +163,55 @@ class DetailsMovie extends Component {
                             </div>
                             <div class="middle">
                                 <div class="bar-container">
-                                    <div class="bar-5"></div>
+                                    <div class="bar-5" style={{width: `${(this.state.ratingData.five*100)/this.state.ratingData.totalcount}%`, height: '18px', backgroundColor: '#4CAF50'}}></div>
                                 </div>
                             </div>
                             <div class="side right">
-                                <div>150</div>
+        <                   div>{this.state.ratingData.five}</div>
                             </div>
                             <div class="side">
                                 <div>4 star</div>
                             </div>
                             <div class="middle">
                                 <div class="bar-container">
-                                    <div class="bar-4"></div>
+                                    <div class="bar-4" style={{width: `${(this.state.ratingData.four*100)/this.state.ratingData.totalcount}%`, height: '18px', backgroundColor: '#ff9800'}}></div>
                                 </div>
                             </div>
                             <div class="side right">
-                                <div>63</div>
+                                <div>{this.state.ratingData.four}</div>
                             </div>
                             <div class="side">
                                 <div>3 star</div>
                             </div>
                             <div class="middle">
                                 <div class="bar-container">
-                                    <div class="bar-3"></div>
+                                    <div class="bar-3" style={{width: `${(this.state.ratingData.three*100)/this.state.ratingData.totalcount}%`, height: '18px', backgroundColor: '#00bcd4'}}></div>
                                 </div>
                             </div>
                             <div class="side right">
-                                <div>15</div>
+                                <div>{this.state.ratingData.three}</div>
                             </div>
                             <div class="side">
                                 <div>2 star</div>
                             </div>
                             <div class="middle">
                                 <div class="bar-container">
-                                    <div class="bar-2"></div>
+                                    <div class="bar-2" style={{width: `${(this.state.ratingData.two*100)/this.state.ratingData.totalcount}%`, height: '18px', backgroundColor: '#ff9800'}}></div>
                                 </div>
                             </div>
                             <div class="side right">
-                                <div>6</div>
+                                <div>{this.state.ratingData.two}</div>
                             </div>
                             <div class="side">
                                 <div>1 star</div>
                             </div>
                             <div class="middle">
                                 <div class="bar-container">
-                                    <div class="bar-1"></div>
+                                    <div class="bar-1" style={{width: `${(this.state.ratingData.one*100)/this.state.ratingData.totalcount}%`, height: '18px', backgroundColor: '#f44336'}}></div>
                                 </div>
                             </div>
                             <div class="side right">
-                                <div>20</div>
+                                <div>{this.state.ratingData.one}</div>
                             </div>
                         </div>
                     </div>
@@ -231,7 +241,7 @@ class DetailsMovie extends Component {
         return this.state.comments.map((comment) =>
             <div class="commentbubble">
                 <div style={{ height: '15px' }}></div>
-                    <p>{comment.title}</p>
+                    <h5><b>{comment.title}</b></h5>
                     <p>
                         {comment.comment}
                     </p>

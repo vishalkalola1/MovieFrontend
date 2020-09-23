@@ -64,7 +64,7 @@ class SignUP extends Component {
             }
         }).then((data)=>{
             localStorage.setItem("islogin",true)
-            localStorage.setItem("logindata",data)
+            localStorage.setItem("userid",data.id)
             this.props.history.push("/home")
         }).catch(err => {
             this.returnHome()

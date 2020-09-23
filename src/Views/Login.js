@@ -61,7 +61,8 @@ class Login extends Component {
             }
         }).then((data)=>{
             localStorage.setItem("islogin",true)
-            localStorage.setItem("logindata",data)
+            localStorage.setItem("userid",data.id)
+            localStorage.setItem("username",data.username)
             this.props.history.push("/home")
         }).catch(err => {
             this.returnHome()
