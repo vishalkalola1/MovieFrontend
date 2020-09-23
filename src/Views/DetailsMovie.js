@@ -3,10 +3,12 @@ import { detailsMovie } from '../api/apiService'
 import '../Css/DetailsMovie.css'
 import 'font-awesome/css/font-awesome.min.css'
 import StarRatings from 'react-star-ratings'
-
+import io from 'socket.io-client';
+import SocketIOClient from 'socket.io-client';
 class DetailsMovie extends Component {
 
     idMovie = -1
+
     constructor(props) {
         super(props)
         this.idMovie = props.match.params.idMovie
@@ -14,20 +16,57 @@ class DetailsMovie extends Component {
             dataMovie: {},
             rating : 0.0
         }
+        this.submitComment = this.submitComment.bind(this)
         this.changeRating = this.changeRating.bind(this)
+        this.socket =  io('http://localhost:3001',{query:`movieId=${this.idMovie}`});
+
+        this.socket.on('connect', function(){
+            console.log("Socket Connected")
+        });
+    
+        this.socket.on('getComment', function(data){
+    
+        });
+        this.socket.on('disconnect', function(){
+            console.log("Socket Disconnected")
+        });
     }
 
     componentDidMount() {
         this.getDetails()
     }
 
+    returnHome(){
+        this.props.history.push('/')
+    }
+
     getDetails() {
         detailsMovie(this.idMovie).then((data) => {
+            if (data.status == 200) {
+                return data.json()
+            } else if (data.status == 401) {
+                throw data
+            } else {
+                throw data
+            }
+        }).then((data)=>{
             console.log(data)
             this.setState({
                 dataMovie: data
             })
+        }).catch(err => {
+            this.returnHome()
         })
+    }
+
+    returnData(data){
+        console.log(data)
+    }
+
+    submitComment(){
+        let json = {"name":"vishal"}
+        this.socket.emit("addcomment",json,this.returnData);
+
     }
 
     changeRating( newRating ) {
@@ -145,7 +184,7 @@ class DetailsMovie extends Component {
                             <input class="oneSub" type="text" value={this.state.search} name="search" placeholder="Write comment" required style={{ height:'55px' }}  onChange={this.handleInputChange} required/>
                         </div>
                         <div id="crightsearch">
-                            <button onClick={this.searchSubmit}>Search</button>
+                            <button onClick={this.submitComment}>Submit</button>
                         </div>
                     </div>
                     <div class="CommentList">

@@ -22,14 +22,7 @@ export const registerUser = async (dict) => {
   });
 
   let data = await fetch(request)
-  let json = data.json()
-  if (data.status == 200) {
-    return json
-  } else if (data.status == 401) {
-    alert("User already exist..")
-  } else {
-    alert("Please try again...")
-  }
+  return data
 };
 
 export const authenticateLogin = async (dict) => {
@@ -41,14 +34,7 @@ export const authenticateLogin = async (dict) => {
     body: JSON.stringify(dict)
   });
   let data = await fetch(request)
-  let json = data.json()
-  if (data.status == 200) {
-    return json
-  } else if (data.status == 401) {
-    alert("Wrong Credentials")
-  } else {
-    alert("Please try again...")
-  }
+  return data
 };
 
 export const searchMovie = async (name) => {
@@ -60,14 +46,7 @@ export const searchMovie = async (name) => {
     }
   });
   let data = await fetch(request)
-  let json = data.json()
-  if (data.status == 200) {
-    return json
-  } else if (data.status == 401) {
-    alert("Wrong Credentials")
-  } else {
-    alert("Please try again...")
-  }
+  return data
 };
 
 export const detailsMovie = async (id) => {
@@ -79,12 +58,12 @@ export const detailsMovie = async (id) => {
     }
   });
   let data = await fetch(request)
-  let json = data.json()
-  if (data.status == 200) {
-    return json
-  } else if (data.status == 401) {
-    alert("Unauthorized request please login again...")
-  } else {
-    alert("Please try again...")
-  }
+  return data
 };
+
+
+
+export const removeData = async () => {
+  localStorage.removeItem("islogin")
+  localStorage.removeItem("logindata")
+}

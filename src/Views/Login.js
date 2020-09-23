@@ -44,12 +44,27 @@ class Login extends Component {
         this.props.history.push("/signup")
     }
 
+    returnHome(){
+        this.props.history.push('/')
+    }
+
     handleSubmit(event) {
         event.preventDefault();
         authenticateLogin(this.state).then((data) => {
-            if(data){
-                this.props.history.push("/home")
+            if (data.status == 200) {
+                return data.json()
+            } else if (data.status == 401) {
+                alert("wrong credentials")
+                throw data
+            } else {
+                this.returnHome()
             }
+        }).then((data)=>{
+            localStorage.setItem("islogin",true)
+            localStorage.setItem("logindata",data)
+            this.props.history.push("/home")
+        }).catch(err => {
+            this.returnHome()
         })
     }
     

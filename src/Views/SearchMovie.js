@@ -20,10 +20,25 @@ class SearchMovie extends Component {
 
     getSearchData(name){
         searchMovie(name).then((data)=>{
+            if (data.status == 200) {
+                return data.json()
+            } else if (data.status == 401) {
+                this.returnHome()
+            } else {
+                this.returnHome()
+            }
+        }).then((data)=>{
+            console.log(data)
             this.setState({
                 childComponent: data
             })
+        }).catch(err => {
+            this.returnHome()
         })
+    }
+
+    returnHome(){
+        this.props.history.push('/')
     }
 
     moveToDetails(event){
@@ -33,7 +48,7 @@ class SearchMovie extends Component {
 
     getrDivList() {
         return this.state.childComponent.map((data) => 
-            <div><img id={data.id} src={data.imageLink} onClick={this.moveToDetails} style={{width:'300px',height:'300px'}}/></div>
+            <div><img key={data.id} id={data.id} src={data.imageLink} onClick={this.moveToDetails} style={{width:'300px',height:'300px'}}/></div>
         )
     }
     
