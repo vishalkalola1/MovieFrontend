@@ -17,15 +17,18 @@ class DetailsMovie extends Component {
             comment: "",
             comments: [],
             ratingData:{},
-            socket: io('http://192.168.0.38:3001', { query: `movieId=${this.idMovie}` })
+            socket: io('http://10.199.4.187:3001', { query: `movieId=${this.idMovie}` })
         }
+        localStorage.setItem("userid","1")
+        localStorage.setItem("username","vishal")
 
         this.submitComment = this.submitComment.bind(this)
         this.changeRating = this.changeRating.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this);
-
+        this.state.socket.removeAllListeners()
         this.state.socket.on('connect', ()=> {
             console.log("Socket Connected")
+            this.getRatings()
         });
 
         this.state.socket.on('disconnect',()=> {
@@ -34,7 +37,8 @@ class DetailsMovie extends Component {
 
         this.state.socket.on(`getComment${this.idMovie}`,(data)=> {
             var proto = Object.getPrototypeOf(data);
-            if (proto === [].prototype) {
+            if (proto === Array.prototype) {
+                console.log(data)
                 this.setState({comments:data})
             } else {
                 this.setState({comments:[...this.state.comments,data]})
@@ -42,9 +46,18 @@ class DetailsMovie extends Component {
         })
     }
 
+    getRatings(){
+        
+        this.state.socket.on(`getRatings${this.idMovie}`,(data)=> {
+            this.setState({ratingData:data,
+                rating: data.ratings
+            })
+        })
+    }
+
 
     componentDidMount() {
-        this.getDetails()
+        // this.getDetails()
     }
 
     returnHome() {
@@ -76,7 +89,7 @@ class DetailsMovie extends Component {
 
     submitComment() {
         let json = {
-            "title": "vishal",
+            "title": localStorage.getItem("username"),
             "comment": this.state.comment,
             "userid": localStorage.getItem("userid"),
             "movieid": this.idMovie
@@ -94,13 +107,12 @@ class DetailsMovie extends Component {
             "movieid": `${this.idMovie}`
         }
 
-        debugger;
         this.state.socket.emit("addratings", json, (data)=> {
             console.log(data)
             if (data.status == 200){
                 this.setState({
                     ratingData: data,
-                    rating:data.rating
+                    rating:data.ratings
                 });
             }
         });
@@ -143,7 +155,7 @@ class DetailsMovie extends Component {
                             <h5 style={{ display: 'inline-block' }}><b>  Movie Director:  </b></h5> <h6 style={{ display: 'inline-block' }}>{this.state.dataMovie.movieDirector}</h6>
                         </div>
                     </div>
-                    <div style={{ marginLeft: '30px', marginRight: '30px' }}>
+                    <div style={{ marginLeft: '30px', marginRight: '30px', pointerEvents: `${this.state.rating > 0.0 ? "none" : "auto"}` }}>
                         <span class="heading"><b>User Rating</b></span>
                         <StarRatings
                             rating={this.state.rating}
@@ -154,7 +166,7 @@ class DetailsMovie extends Component {
                             starHoverColor="blue"
                             name='rating'
                         />
-                        <p>4.1 rate based on 254 ratings.</p>
+                        <p>{this.state.rating} rate based on {this.state.ratingData.totalcount} ratings.</p>
                         <hr style={{ border: '3px solid #f1f1f1' }} />
 
                         <div class="row" >
