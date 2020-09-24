@@ -5,6 +5,7 @@ import 'font-awesome/css/font-awesome.min.css'
 import StarRatings from 'react-star-ratings'
 import io from 'socket.io-client';
 import SocketIOClient from 'socket.io-client';
+import { browserHistory } from 'react-router';
 class DetailsMovie extends Component {
 
     idMovie = -1
@@ -17,7 +18,7 @@ class DetailsMovie extends Component {
             comment: "",
             comments: [],
             ratingData:{},
-            socket: io('http://10.199.4.187:3001', { query: `movieId=${this.idMovie}` })
+            socket: io('http://192.168.0.38:3001', { query: `movieId=${this.idMovie}&userid=${localStorage.getItem("userid")}` })
         }
         localStorage.setItem("userid","1")
         localStorage.setItem("username","vishal")
@@ -26,9 +27,11 @@ class DetailsMovie extends Component {
         this.changeRating = this.changeRating.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state.socket.removeAllListeners()
+
         this.state.socket.on('connect', ()=> {
             console.log("Socket Connected")
             this.getRatings()
+            this.seenMovie()
         });
 
         this.state.socket.on('disconnect',()=> {
@@ -36,22 +39,49 @@ class DetailsMovie extends Component {
         });
 
         this.state.socket.on(`getComment${this.idMovie}`,(data)=> {
-            var proto = Object.getPrototypeOf(data);
-            if (proto === Array.prototype) {
-                console.log(data)
-                this.setState({comments:data})
-            } else {
-                this.setState({comments:[...this.state.comments,data]})
+            if(data){
+                var proto = Object.getPrototypeOf(data);
+                if (proto === Array.prototype) {
+                    console.log(data)
+                    this.setState({comments:data})
+                } else {
+                    this.setState({comments:[...this.state.comments,data]})
+                }
             }
         })
+    }
+
+    seenMovie(){
+        let json = {
+            "userid": localStorage.getItem("userid"),
+            "movieid": `${this.idMovie}`
+        }
+    
+        this.state.socket.emit("SeenMovie", json, (data)=> {
+            if (data.status == 200){
+                console.log(data)
+            }
+        });
     }
 
     getRatings(){
         
         this.state.socket.on(`getRatings${this.idMovie}`,(data)=> {
-            this.setState({ratingData:data,
-                rating: data.ratings
-            })
+            if(data !== undefined){
+                this.setState({
+                    ratingData:data
+                })
+            }
+
+            if(this.state.ratingData.isenable == "0"){
+                this.setState({
+                    rating: 0.0
+                })
+            }else{
+                this.setState({
+                    rating: data.ratings
+                })
+            }
         })
     }
 
@@ -59,6 +89,15 @@ class DetailsMovie extends Component {
     componentDidMount() {
         // this.getDetails()
     }
+
+    componentDidUpdate(){    
+        window.onpopstate = e => {
+           //your code...
+           this.state.socket.removeAllListeners()
+           this.state.socket.disconnect()
+        }
+      }
+      
 
     returnHome() {
         this.props.history.push('/')
@@ -108,12 +147,8 @@ class DetailsMovie extends Component {
         }
 
         this.state.socket.emit("addratings", json, (data)=> {
-            console.log(data)
             if (data.status == 200){
-                this.setState({
-                    ratingData: data,
-                    rating:data.ratings
-                });
+                console.log(data)
             }
         });
     }
@@ -155,7 +190,7 @@ class DetailsMovie extends Component {
                             <h5 style={{ display: 'inline-block' }}><b>  Movie Director:  </b></h5> <h6 style={{ display: 'inline-block' }}>{this.state.dataMovie.movieDirector}</h6>
                         </div>
                     </div>
-                    <div style={{ marginLeft: '30px', marginRight: '30px', pointerEvents: `${this.state.rating > 0.0 ? "none" : "auto"}` }}>
+                    <div style={{ marginLeft: '30px', marginRight: '30px', pointerEvents: `${this.state.ratingData.isenable == "1" ? "none" : "auto"}` }}>
                         <span class="heading"><b>User Rating</b></span>
                         <StarRatings
                             rating={this.state.rating}
@@ -166,7 +201,7 @@ class DetailsMovie extends Component {
                             starHoverColor="blue"
                             name='rating'
                         />
-                        <p>{this.state.rating} rate based on {this.state.ratingData.totalcount} ratings.</p>
+                        <p>{this.state.ratingData.ratings} rate based on {this.state.ratingData.totalcount} ratings.</p>
                         <hr style={{ border: '3px solid #f1f1f1' }} />
 
                         <div class="row" >
