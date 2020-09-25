@@ -37,6 +37,19 @@ export const authenticateLogin = async (dict) => {
   return data
 };
 
+export const homeApi = async (dict) => {
+  const request = new Request(`${buildURL('homeapi')}`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "Authorization": `bearer ${localStorage.getItem("secretkey")}`
+    },
+    body: JSON.stringify(dict)
+  });
+  let data = await fetch(request)
+  return data
+};
+
 export const searchMovie = async (name) => {
   const request = new Request(`${buildURL('searchMovie')}&name=${name}`, {
     method: "GET",

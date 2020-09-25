@@ -87,7 +87,7 @@ class DetailsMovie extends Component {
 
 
     componentDidMount() {
-        // this.getDetails()
+        this.getDetails()
     }
 
     componentDidUpdate(){    
