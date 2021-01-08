@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "77ec5241-9d67-457e-bc3b-1b026b1af09b",
+		"name": "MovieWebsite",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createUser",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\":\"123\",\n    \"username\":\"vishal3\",\n\t\"birthdate\" : \"12/05/1994\",\n\t\"gender\":\"male\",\n\t\"email\":\"vishalkalola196@gmail.com\",\n\t\"country\":\"france\",\n    \"area\":\"villejuif\",\n\t\"city\":\"val-de-marne\",\n\t\"street\":\"50, avenue karl marx\",\n    \"pincode\":\"94800\",\n\t\"role\":\"user\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/MovieAPI/rest/user/createUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"MovieAPI",
+						"rest",
+						"user",
+						"createUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Addmovie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\":\"Marriage Story\",\n    \"details\":\"Le Concert is a 2009 French comedy-drama film by Radu Mihăileanu, starring Aleksei Guskov, Mélanie Laurent and Miou-Miou. It won the Best Original Score and Best Sound awards at César Awards 2010.[2] It was also nominated for two Magritte Awards in the category of Best Film in Coproduction and Best Editing for Ludo Troch in 2011, and Best Foreign Film at the 68th Golden Globe Awards\",\n    \"imageLink\":\"https://c8.alamy.com/comp/EFB660/movie-poster-le-concert-the-concert-2009-EFB660.jpg\",\n    \"releaseDate\":\"16 May 2019\",\n    \"category\":\"Comedy,Drama\",\n    \"movieDirector\":\"Radu Mihăileanu\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/MovieAPI/rest/MovieService/addmovie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"MovieAPI",
+						"rest",
+						"MovieService",
+						"addmovie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addscenemovie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"userid\":\"1\",\n    \"movieid\":\"2\"\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/tws/addscenemovie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"tws",
+						"addscenemovie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchMovie",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/apiman-gateway/ezshare/searchMovie/1.0?name=Av",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"apiman-gateway",
+						"ezshare",
+						"searchMovie",
+						"1.0"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Av"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HomeAPI",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"userid\":\"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/MovieAPI/rest/MovieService/getTopMovies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"MovieAPI",
+						"rest",
+						"MovieService",
+						"getTopMovies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginAPI",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\":\"123\",\n    \"username\":\"simpy\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/MovieAPI/rest/user/authenticateUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"MovieAPI",
+						"rest",
+						"user",
+						"authenticateUser"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
