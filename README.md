@@ -1,68 +1,62 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Introduction
+- **Purpose** 
+   - The main purpose of this document is to provide a working example of a Software Requirements Specification (SRS) in the technical aspects.
 
-## Available Scripts
+- **Scope** 
+  - This document specifies requirements for a simple website for Movie Ratings. The application allows users to: 
+      1. Login
+      2. Signup 
+      3. Search Movie by name
+      4. Recommndation, Last seen and New Movie Tabs
+      5. Show movie details 
+      6. Review and Ratings Real Time
+      7. Some upcoming movie poster
 
-In the project directory, you can run:
+- **Product perspective**
+  - **System interfaces**
+      - The website runs in the latest version of Chrome or Firefox browser on Windows, Linux and Mac. 
 
-### `yarn start`
+  - **User interfaces**
+    - The Website GUI provides Search, Recommendation Movie, buttons, GridView, Scrolling, Easy to use components allowing for easy control by a keyboard and a mouse. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  - **Hardware interfaces**
+  
+      | Type | Configuration |
+      |---|---|
+      |**Operating system**|Windows, Mac, Linux|
+      |**CPU**|Core 2 Quad Q6600 at 2.4 GHz or AMD Phenom 9850 at 2.5 GHz with virtualization technology|
+      |**Memory**|8 GB RAM|
+      |**Free space**|65 GB of free space|
+      |**Graphics hardware**|DirectX 10-compatible GPU: GeForce 9800GT 1GB or ATI Radeon HD 4870 1GB|
+      |**Sound hardware**|DirectX 10 compatible sound card|
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+  - **Website interfaces**
+      | Type | Configuration |
+      |---|---|
+      |**Language & framework**|React js, Java, Spring, Hibernate, junit, Maven, Jersey, log4j, inject, postgres, neo4j, MongoDB, Socket.io, Node js, JSON|
+      |**Tools**|VSCode, Eclipse, Postgress, Neo4j, Mongodb, Docker, Docker Container, ApacheDS, APIMAN, Tomcat9.0 server, Jenkins, Sonarqube, Nexus, Virtualbox, Chrome browser|
 
-### `yarn test`
+  - **Website Flow**
+  
+    <a href="https://github.com/vishalkalola1/MovieFrontend/blob/master/Images/Flow.png"><img src="https://github.com/vishalkalola1/MovieFrontend/blob/master/Images/Flow.png" title=""/></a>
+    
+    
+# Github
+| Repository | URL |
+| --- | ---|
+| Movie Rating Frontend | https://github.com/vishalkalola1/MovieFrontend.git |
+| Movie backend Java | https://github.com/vishalkalola1/MovieBackend.git |
+| Movie backend Node js | https://github.com/vishalkalola1/MovieBackendNode.git |
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Note: MovieWebsite.postman_collection.json Import into Postman for test API in your Local setup.
 
-### `yarn build`
+# ScreenShot
+| Home | Details |
+| --- | --- |
+| <a href="https://github.com/vishalkalola1/MovieFrontend/blob/master/Images/Web1.png"><img src="https://github.com/vishalkalola1/MovieFrontend/blob/master/Images/Web1.png" title=""/></a> | <a href="https://github.com/vishalkalola1/MovieFrontend/blob/master/Images/Web2.png"><img src="https://github.com/vishalkalola1/MovieFrontend/blob/master/Images/Web2.png" title=""/></a> |
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Search | SignIn |
+| --- | --- |
+| <a href="https://github.com/vishalkalola1/MovieFrontend/blob/master/Images/Web3.png"><img src="https://github.com/vishalkalola1/MovieFrontend/blob/master/Images/Web3.png" title=""/></a> | <a href="https://github.com/vishalkalola1/MovieFrontend/blob/master/Images/Web5.png"><img src="https://github.com/vishalkalola1/MovieFrontend/blob/master/Images/Web5.png" title=""/></a> 
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
