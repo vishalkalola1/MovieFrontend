@@ -18,7 +18,7 @@ class DetailsMovie extends Component {
             comment: "",
             comments: [],
             ratingData:{},
-            socket: io('http://192.168.0.38:3001', { query: `movieId=${this.idMovie}&userid=${localStorage.getItem("userid")}` })
+            socket: io('http://192.168.0.28:3001', { query: `movieId=${this.idMovie}&userid=${localStorage.getItem("userid")}` })
         }
         localStorage.setItem("userid","1")
         localStorage.setItem("username","vishal")

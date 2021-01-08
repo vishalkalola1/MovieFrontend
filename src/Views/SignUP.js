@@ -24,7 +24,7 @@ class SignUP extends Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.getToken()
+        // this.getToken()
     }
 
     getToken(){

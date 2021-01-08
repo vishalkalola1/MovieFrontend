@@ -1,76 +1,93 @@
 
-const baseURL = "http://localhost:8080/apiman-gateway/ezshare";
-const APIKEY = "apikey=0429b102-d063-4094-bcf7-5bf0149d5974";
-const version = "1.0";
-const token = "access_token="
+const baseURL = "http://localhost:8080/MovieAPI/rest"
 
 export const buildURL = (url) => {
-  return `${baseURL}/${url}/${version}?${APIKEY}&${token}${localStorage.getItem("secretkey")}`
+  return `${baseURL}/${url}`
 };
 
 export const buildURLParam = (url) => {
-  return `${baseURL}/${url}/${version}?${APIKEY}`
+  return `${baseURL}/${url}`
 };
 
 export const registerUser = async (dict) => {
-  const request = new Request(buildURL('createuser'), {
-    method: "POST",
-    headers: {
-      "content-type": "application/json"
-    },
-    body: JSON.stringify(dict)
-  });
 
-  let data = await fetch(request)
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify(dict);
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  let data = await fetch(buildURL('user/createUser'), requestOptions)
   return data
 };
 
 export const authenticateLogin = async (dict) => {
-  const request = new Request(buildURL('authenticateUser'), {
-    method: "POST",
-    headers: {
-      "content-type": "application/json"
-    },
-    body: JSON.stringify(dict)
-  });
-  let data = await fetch(request)
+
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify(dict);
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  let data = await fetch(buildURL('user/authenticateUser'),requestOptions)
   return data
 };
 
 export const homeApi = async (dict) => {
-  const request = new Request(`${buildURL('homeapi')}`, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      "Authorization": `bearer ${localStorage.getItem("secretkey")}`
-    },
-    body: JSON.stringify(dict)
-  });
-  let data = await fetch(request)
+
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify(dict);
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  let data = await fetch(buildURL('MovieService/getTopMovies'), requestOptions)
   return data
 };
 
 export const searchMovie = async (name) => {
-  const request = new Request(`${buildURL('searchMovie')}&name=${name}`, {
-    method: "GET",
-    headers: {
-      "content-type": "application/json",
-      "Authorization": `bearer ${localStorage.getItem("secretkey")}`
-    }
-  });
-  let data = await fetch(request)
+    var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+
+  let data = await fetch(`${buildURL('MovieService/searchMovie')}?name=${name}`, requestOptions)
   return data
 };
 
 export const detailsMovie = async (id) => {
-  const request = new Request(`${buildURL('detailsMovie')}&id=${id}`, {
-    method: "GET",
-    headers: {
-      "content-type": "application/json",
-      "Authorization": `bearer ${localStorage.getItem("secretkey")}`
-    }
-  });
-  let data = await fetch(request)
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+  
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+  
+  let data = await fetch(`${buildURL('MovieService/details')}?id=${id}`, requestOptions)
   return data
 };
 

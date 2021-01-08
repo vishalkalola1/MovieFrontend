@@ -27,7 +27,6 @@ class Home extends Component {
     getData(){
         let data = {"userid":localStorage.getItem("userid")}
         homeApi(data).then((data) => {
-            debugger;
             if (data.status == 200) {
                 return data.json()
             } else if (data.status == 401) {

@@ -18,7 +18,7 @@ class Login extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onclick = this.onclick.bind(this);
-        this.getToken()
+        // this.getToken()
     }
 
     getToken(){
